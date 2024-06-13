@@ -1,4 +1,5 @@
 import { Todo } from "../utils/types";
+import { TodoItem } from "./todo-item";
 
 type Props = {
   todos: Array<Todo>;
@@ -8,7 +9,7 @@ export function TodoList({ todos }: Props) {
   return (
     <ul>
       {todos.map((todo) => (
-        <li key={todo.id}>{todo.name}</li>
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>
   );
