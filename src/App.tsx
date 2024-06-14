@@ -28,7 +28,7 @@ function App() {
   }
 
   return (
-    <div className="wrapper">
+    <div>
       <div>
         <h3>Todo List</h3>
         <TodoList
