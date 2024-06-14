@@ -16,11 +16,15 @@ function App() {
     setTodos([...todos, { id: uuid(), name, isCompleted: false }]);
   }
 
+  function removeTodo(id: string) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
   return (
     <div className="wrapper">
       <div>
         <h3>Todo List</h3>
-        <TodoList todos={todos} />
+        <TodoList todos={todos} removeTodo={removeTodo} />
         <TodoForm addTodo={addTodo} />
       </div>
     </div>

@@ -11,6 +11,8 @@ export function TodoForm({ addTodo }: Props) {
     event.preventDefault();
     // Add a todo
     addTodo(input);
+    // Clear input field
+    setInput("");
   }
 
   return (
