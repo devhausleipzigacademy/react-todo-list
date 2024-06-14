@@ -9,11 +9,11 @@ type Props = {
 
 export function TodoList({ todos, removeTodo, toggleCompleted }: Props) {
   return todos.length === 0 ? (
-    <p>
+    <p className="border-2 border-dashed p-4 border-gray-300 text-gray-500 rounded-md">
       No todos added yet, please use the input below to add your first todo.
     </p>
   ) : (
-    <ul>
+    <ul className="text-left space-y-1">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}

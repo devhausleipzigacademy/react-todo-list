@@ -1,8 +1,9 @@
 import { cn } from "../utils/cn";
+import { Variant } from "../utils/types";
 
 type Props = {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: Variant;
 };
 
 export function Button({ children, variant = "primary" }: Props) {
