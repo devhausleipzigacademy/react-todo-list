@@ -5,12 +5,7 @@ import { Todo } from "./utils/types";
 import { v4 as uuid } from "uuid";
 
 function App() {
-  const [todos, setTodos] = useState<Array<Todo>>([
-    { id: "1", name: "Buy milk", isCompleted: false },
-    { id: "2", name: "Program projects", isCompleted: false },
-    { id: "3", name: "Buy pizza", isCompleted: false },
-    { id: "4", name: "Have fun", isCompleted: false },
-  ]);
+  const [todos, setTodos] = useState<Array<Todo>>([]);
 
   function addTodo(name: string) {
     setTodos([...todos, { id: uuid(), name, isCompleted: false }]);
@@ -20,11 +15,27 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
+  function toggleCompleted(id: string) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id !== id) return todo;
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted,
+        };
+      })
+    );
+  }
+
   return (
     <div className="wrapper">
       <div>
         <h3>Todo List</h3>
-        <TodoList todos={todos} removeTodo={removeTodo} />
+        <TodoList
+          todos={todos}
+          removeTodo={removeTodo}
+          toggleCompleted={toggleCompleted}
+        />
         <TodoForm addTodo={addTodo} />
       </div>
     </div>
