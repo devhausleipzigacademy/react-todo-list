@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoForm } from "./components/todo-form";
 import { TodoList } from "./components/todo-list";
 import { Todo } from "./utils/types";
@@ -6,6 +6,10 @@ import { v4 as uuid } from "uuid";
 
 function App() {
   const [todos, setTodos] = useState<Array<Todo>>([]);
+
+  useEffect(() => {
+    setTodos(JSON.parse(localStorage.getItem("todos") || "[]") as Todo[]);
+  }, []);
 
   function addTodo(name: string) {
     setTodos((previousState) => {
@@ -27,15 +31,17 @@ function App() {
   }
 
   function toggleCompleted(id: string) {
-    setTodos(
-      todos.map((todo) => {
+    setTodos((previousState) => {
+      const updatedTodos = previousState.map((todo) => {
         if (todo.id !== id) return todo;
         return {
           ...todo,
           isCompleted: !todo.isCompleted,
         };
-      })
-    );
+      });
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+      return updatedTodos;
+    });
   }
 
   return (
