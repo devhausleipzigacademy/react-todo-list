@@ -8,11 +8,22 @@ function App() {
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
   function addTodo(name: string) {
-    setTodos([...todos, { id: uuid(), name, isCompleted: false }]);
+    setTodos((previousState) => {
+      const updatedTodos = [
+        ...previousState,
+        { id: uuid(), name, isCompleted: false },
+      ];
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+      return updatedTodos;
+    });
   }
 
   function removeTodo(id: string) {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos((previousState) => {
+      const updatedTodos = previousState.filter((todo) => todo.id !== id);
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+      return updatedTodos;
+    });
   }
 
   function toggleCompleted(id: string) {
