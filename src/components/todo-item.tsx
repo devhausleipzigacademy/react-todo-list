@@ -10,18 +10,21 @@ type Props = {
 export function TodoItem({ todo, removeTodo, toggleCompleted }: Props) {
   return (
     <li className="flex justify-between items-center">
-      <div className="flex items-center gap-2">
+      <label className="flex items-center gap-2 flex-1">
         <input
           defaultChecked={todo.isCompleted}
           type="checkbox"
           onChange={() => toggleCompleted(todo.id)}
         />
         <span
-          className={cn("text-lg", todo.isCompleted ? "line-through" : null)}
+          className={cn(
+            "text-lg",
+            todo.isCompleted ? "text-zinc-900/50 line-through" : null
+          )}
         >
           {todo.name}
         </span>
-      </div>
+      </label>
       <button
         className="bg-red-500 p-1 aspect-square rounded hover:bg-red-600 transition text-gray-50"
         onClick={() => removeTodo(todo.id)}

@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="h-screen w-screen grid place-items-center">
       <div className="text-center space-y-6">
-        <h3 className="text-4xl">Todo List</h3>
+        <h3 className="text-4xl font-heading">Todo List</h3>
         <TodoList
           todos={todos}
           removeTodo={removeTodo}
